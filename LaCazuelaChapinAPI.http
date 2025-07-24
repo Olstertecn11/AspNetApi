@@ -1,0 +1,6 @@
+@LaCazuelaChapinAPI_HostAddress = http://localhost:5106
+
+GET {{LaCazuelaChapinAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
