@@ -55,7 +55,11 @@ namespace LaCazuelaChapinaAPI.Data
             //     .HasForeignKey(i => i.IdProductoFk);
             //
             // // Relación entre CatalogoItem y Catalogo (un item pertenece a un catálogo)
-
+            modelBuilder.Entity<Catalogo>()
+              .HasMany(c => c.CatalogoItems)
+              .WithOne()
+              .HasForeignKey(ci => ci.IdCatalogo) // Este es el campo de relación
+              .OnDelete(DeleteBehavior.Cascade); 
 
             modelBuilder.Entity<CatalogoItem>()
               .HasOne(ci => ci.Catalogo)

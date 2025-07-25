@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LaCazuelaChapinaAPI.Models
 {
@@ -18,6 +19,13 @@ namespace LaCazuelaChapinaAPI.Models
         [Column("descripcion")]
         public string Descripcion { get; set; }
 
-        public virtual Catalogo Catalogo { get; set; }
+
+        [Column("esta_activo")]
+        public bool EstaActivo { get; set; }
+
+
+
+        [JsonIgnore]
+        public virtual Catalogo? Catalogo { get; set; }
     }
 }
