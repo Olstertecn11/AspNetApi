@@ -46,6 +46,23 @@ namespace LaCazuelaChapinaAPI.Controllers
             return Ok(catalogoItem);
         }
 
+        // GET /api/catalogoitem/catalogo/{id}: Obtener items de catálogo por ID de catálogo
+        [HttpGet("catalogo/{id}")]
+        public async Task<IActionResult> GetCatalogoItemsByCatalogoId(int id)
+        {
+            var catalogoItems = await _context.CatalogoItems
+                .Where(c => c.IdCatalogo == id)
+                .Include(c => c.Catalogo)
+                .ToListAsync();
+
+            if (catalogoItems == null || catalogoItems.Count == 0)
+            {
+                return NotFound("No se encontraron items de catálogo para el catálogo especificado.");
+            }
+
+            return Ok(catalogoItems);
+        }
+
         // POST /api/catalogoitem: Crear un nuevo item de catálogo
         [HttpPost]
         public async Task<IActionResult> CreateCatalogoItem([FromBody] CatalogoItem catalogoItem)

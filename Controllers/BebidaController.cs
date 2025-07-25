@@ -17,12 +17,18 @@ namespace LaCazuelaChapinaAPI.Controllers
         }
 
         // GET /api/bebidas: Obtener todas las bebidas disponibles
-        [HttpGet]
-        public async Task<IActionResult> GetBebidas()
-        {
-            var bebidas = await _context.Bebidas.ToListAsync();
-            return Ok(bebidas); // Devuelve la lista de bebidas
-        }
+       [HttpGet]
+public async Task<IActionResult> GetBebidas()
+{
+    var bebidas = await _context.Bebidas
+                                .Include(b => b.TipoBebida)
+                                .Include(b => b.Tamanio)
+                                .Include(b => b.Endulzante)
+                                .Include(b => b.Topping)
+                                .ToListAsync();
+
+    return Ok(bebidas); // Devuelve la lista de bebidas con las relaciones incluidas
+}
 
         // GET /api/bebidas/{id}: Obtener una bebida específica por ID
         [HttpGet("{id}")]
