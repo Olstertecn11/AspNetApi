@@ -30,7 +30,9 @@ namespace LaCazuelaChapinaAPI.Data
             // Puedes agregar más configuraciones si es necesario para las demás entidades.
             // Especificar el esquema "cazuela_chapina" para la tabla Tamales
             modelBuilder.Entity<Tamal>().ToTable("tamales", "cazuela_chapina");
-            modelBuilder.Entity<Bebida>().ToTable("bebidas", "cazuela_chapina");
+            modelBuilder.Entity<Bebida>()
+    .ToTable("bebida", schema: "cazuela_chapina");
+
             modelBuilder.Entity<Usuario>().ToTable("usuarios", "cazuela_chapina");
             modelBuilder.Entity<Rol>().ToTable("roles", "cazuela_chapina");
             modelBuilder.Entity<Catalogo>().ToTable("catalogo", "cazuela_chapina");
@@ -70,32 +72,30 @@ namespace LaCazuelaChapinaAPI.Data
             /*====================================*/
             /*             BEBIDA                 */
             /*====================================*/
-            modelBuilder.Entity<Bebida>()
-              .HasOne(b => b.TipoBebida)
-              .WithMany()
-              .HasForeignKey(b => b.IdTipoBebida)
-              .OnDelete(DeleteBehavior.Restrict);
+modelBuilder.Entity<Bebida>()
+    .HasOne(b => b.TipoBebida)
+    .WithMany()
+    .HasForeignKey(b => b.IdTipoBebida)
+    .OnDelete(DeleteBehavior.Restrict);
 
-            // Relación entre Bebida y CatalogoItem para Tamano
-            modelBuilder.Entity<Bebida>()
-              .HasOne(b => b.Tamano)
-              .WithMany()
-              .HasForeignKey(b => b.IdTamanoFk)
-              .OnDelete(DeleteBehavior.Restrict);
+modelBuilder.Entity<Bebida>()
+    .HasOne(b => b.Tamanio)
+    .WithMany()
+    .HasForeignKey(b => b.IdTamanioFk)
+    .OnDelete(DeleteBehavior.Restrict);
 
-            // Relación entre Bebida y CatalogoItem para Endulzante
-            modelBuilder.Entity<Bebida>()
-              .HasOne(b => b.Endulzante)
-              .WithMany()
-              .HasForeignKey(b => b.IdEndulzanteFk)
-              .OnDelete(DeleteBehavior.Restrict);
+modelBuilder.Entity<Bebida>()
+    .HasOne(b => b.Endulzante)
+    .WithMany()
+    .HasForeignKey(b => b.IdEndulzanteFk)
+    .OnDelete(DeleteBehavior.Restrict);
 
-            // Relación entre Bebida y CatalogoItem para Topping
-            modelBuilder.Entity<Bebida>()
-              .HasOne(b => b.Topping)
-              .WithMany()
-              .HasForeignKey(b => b.IdToppingFk)
-              .OnDelete(DeleteBehavior.Restrict);
+modelBuilder.Entity<Bebida>()
+    .HasOne(b => b.Topping)
+    .WithMany()
+    .HasForeignKey(b => b.IdToppingFk)
+    .OnDelete(DeleteBehavior.Restrict);
+
 
 
             /*====================================*/

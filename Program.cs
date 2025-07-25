@@ -4,6 +4,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173") // tu frontend
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 // Agregar el servicio DatabaseService
 builder.Services.AddScoped<DatabaseService>();
 
@@ -18,6 +29,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors("AllowReactApp");
 // Habilitar Swagger y SwaggerUI en entorno de desarrollo
 if (app.Environment.IsDevelopment())
 {
