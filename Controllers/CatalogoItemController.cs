@@ -57,7 +57,8 @@ namespace LaCazuelaChapinaAPI.Controllers
 
             if (catalogoItems == null || catalogoItems.Count == 0)
             {
-                return NotFound("No se encontraron items de catálogo para el catálogo especificado.");
+              // i need return a empty array 
+                return Ok(new List<CatalogoItem>()); 
             }
 
             return Ok(catalogoItems);
