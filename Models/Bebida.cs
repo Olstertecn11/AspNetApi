@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace LaCazuelaChapinaAPI.Models
 {
@@ -29,8 +30,11 @@ namespace LaCazuelaChapinaAPI.Models
         public int Inventario { get; set; }
 
         public virtual CatalogoItem TipoBebida { get; set; }
+
         public virtual CatalogoItem Tamanio { get; set; }
+
         public virtual CatalogoItem Endulzante { get; set; }
+
         public virtual CatalogoItem Topping { get; set; }
     }
 }
