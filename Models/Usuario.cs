@@ -1,30 +1,27 @@
-
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace LaCazuelaChapinaAPI.Models{
-  public class Usuario{
+[Table("usuario", Schema = "autenticacion")]
+public class Usuario
+{
     [Key]
+    [Column("id_usuario")]
     public int IdUsuario { get; set; }
 
-    // Nombre del usuario
-    public string Nombre { get; set; }
+    [Column("nombre")]
+    public string? Nombre { get; set; }
 
-    // Correo del usuario (único)
+    [Required]
+    [Column("correo")]
     public string Correo { get; set; }
 
-    // Contraseña del usuario
-    public string Contraseña { get; set; }
+    [Required]
+    [Column("contrasenia")]
+    public string Contrasenia { get; set; }  // <-- Sin "ñ"
 
-    // Clave foránea que referencia al rol
-    public int RolIdFk { get; set; }
+    [Column("rol_id_fk")]
+    public int? RolIdFk { get; set; }
 
-    // Fecha de ingreso
-    public DateTime FechaIngreso { get; set; }
-
-    public int RolidFk {get;set;}
-
-
-    // Propiedad de navegación para la relación con el rol
-    public Rol Rol { get; set; }
-  }
+    [Column("fh_ingreso")]
+    public DateTime? FhIngreso { get; set; }
 }

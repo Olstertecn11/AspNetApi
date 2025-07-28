@@ -33,8 +33,8 @@ namespace LaCazuelaChapinaAPI.Data
       modelBuilder.Entity<Bebida>()
         .ToTable("bebida", schema: "cazuela_chapina");
 
-      modelBuilder.Entity<Usuario>().ToTable("usuarios", "cazuela_chapina");
-      modelBuilder.Entity<Rol>().ToTable("roles", "cazuela_chapina");
+      modelBuilder.Entity<Usuario>().ToTable("usuario", "autenticacion");
+      modelBuilder.Entity<Rol>().ToTable("roles", "autenticacion");
       modelBuilder.Entity<Catalogo>().ToTable("catalogo", "cazuela_chapina");
       modelBuilder.Entity<CatalogoItem>().ToTable("catalogo_item", "cazuela_chapina");
 

@@ -1,4 +1,5 @@
 using LaCazuelaChapinaAPI.Data;
+using LaCazuelaChapinaAPI.Models.DTO;
 using LaCazuelaChapinaAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

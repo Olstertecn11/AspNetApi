@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using LaCazuelaChapinaAPI.Services;
 using LaCazuelaChapinaAPI.Data;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +20,25 @@ builder.Services.AddCors(options =>
 
 // Agregar el servicio DatabaseService
 builder.Services.AddScoped<DatabaseService>();
+
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
+
+
 
 // Configuración de DbContext con PostgreSQL
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -39,5 +61,5 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthorization(); // Configurar autorización
 app.MapControllers(); // Mapear los controladores
-
+app.UseAuthentication();
 app.Run(); // Ejecutar la aplicación
