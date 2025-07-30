@@ -1,18 +1,12 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-namespace LaCazuelaChapinaAPI.Models
+
+[Table("venta", Schema = "cazuela_chapina")]
+public class Venta
 {
-    public class Venta
-    {
-        [Key]
-        public int IdVenta { get; set; }
-        public int IdUsuarioFk { get; set; }
-        public DateTime FechaVenta { get; set; }
-        public decimal Monto { get; set; }
-
-        // Relación con el usuario
-        public virtual Usuario Usuario { get; set; }
-
-        // Relación con los detalles de la venta
-        public virtual List<DetalleVenta> DetalleVentas { get; set; }
-    }
+    [Key]
+    public int IdVenta { get; set; }
+    public int IdUsuarioFk { get; set; }
+    public DateTime FhIngreso { get; set; }
+    public decimal Monto { get; set; }
 }

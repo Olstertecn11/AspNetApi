@@ -50,10 +50,21 @@ namespace LaCazuelaChapinaAPI.Controllers
           return Ok(tamal); // Devuelve el tamal encontrado
         }
 
-        // POST /api/tamales: Crear un nuevo tamal
         [HttpPost]
         public async Task<IActionResult> CreateTamal([FromBody] TamalDto dto)
         {
+          var existe = await _context.Tamales.AnyAsync(t =>
+              t.IdTipoMasaFk == dto.IdTipoMasaFk &&
+              t.IdRellenoFk == dto.IdRellenoFk &&
+              t.IdEnvolturaFk == dto.IdEnvolturaFk &&
+              t.IdNivelPicante == dto.IdNivelPicante
+              );
+
+          if (existe)
+          {
+            return Conflict("Ya existe un tamal con los mismos ingredientes.");
+          }
+
           var tamal = new Tamal
           {
             IdTipoMasaFk = dto.IdTipoMasaFk,

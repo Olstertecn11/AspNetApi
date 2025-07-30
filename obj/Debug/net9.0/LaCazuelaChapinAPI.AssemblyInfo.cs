@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LaCazuelaChapinAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5e6c3e0483906f061e68ede5fdeb3d17d4b98da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+862148d6fc03a46b5711d44f5c82baa20caf756b")]
 [assembly: System.Reflection.AssemblyProductAttribute("LaCazuelaChapinAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LaCazuelaChapinAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

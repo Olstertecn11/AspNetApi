@@ -17,8 +17,8 @@ namespace LaCazuelaChapinaAPI.Data
     public DbSet<Catalogo> Catalogos { get; set; }
     public DbSet<CatalogoItem> CatalogoItems { get; set; }
     // public DbSet<Combo> Combos { get; set; }
-    // public DbSet<Venta> Ventas { get; set; }
-    // public DbSet<DetalleVenta> DetalleVentas { get; set; }
+    public DbSet<Venta> Ventas { get; set; }
+    public DbSet<DetalleVenta> DetalleVentas { get; set; }
     // public DbSet<Inventario> Inventarios { get; set; }
 
     // Desactivar las migraciones automáticas
@@ -30,6 +30,8 @@ namespace LaCazuelaChapinaAPI.Data
       // Puedes agregar más configuraciones si es necesario para las demás entidades.
       // Especificar el esquema "cazuela_chapina" para la tabla Tamales
       modelBuilder.Entity<Tamal>().ToTable("tamales", "cazuela_chapina");
+      modelBuilder.Entity<Venta>().ToTable("venta", "cazuela_chapina");
+      modelBuilder.Entity<DetalleVenta>().ToTable("detalle_venta", "cazuela_chapina");
       modelBuilder.Entity<Bebida>()
         .ToTable("bebida", schema: "cazuela_chapina");
 
@@ -37,6 +39,7 @@ namespace LaCazuelaChapinaAPI.Data
       modelBuilder.Entity<Rol>().ToTable("roles", "autenticacion");
       modelBuilder.Entity<Catalogo>().ToTable("catalogo", "cazuela_chapina");
       modelBuilder.Entity<CatalogoItem>().ToTable("catalogo_item", "cazuela_chapina");
+
 
       // Relación entre Venta y DetalleVenta (una venta tiene varios detalles)
       // modelBuilder.Entity<Venta>()
